@@ -1,22 +1,4 @@
-import random  # computer selects randomly-generated options for each round/game
-
-# GLOBAL VARIABLES
-
-# GAME STATISTICS
-'''These counters track the user's performance across the game'''
-total_games_played = 0
-total_wins = 0
-total_losses = 0
-
-# GAME DICTIONARY
-'''This dictionary stores the option choices for display'''
-display_choice_dict = {"r": "Rock",
-                       "p": "Paper",
-                       "s": "Scissors"}
-
-# USER'S NAME
-name = ""
-name = welcome(name)
+import random # computer selects randomly-generated options for each round/game
 
 # NAME VALIDATION
 def ask_name():
@@ -125,6 +107,24 @@ def ask_play_again():
         else:
             print("Invalid input")
             print("Please enter 'y' to continue, or 'n' to stop.\n")
+
+# GLOBAL VARIABLES
+
+# GAME STATISTICS
+'''These counters track the user's performance across the game'''
+total_games_played = 0
+total_wins = 0
+total_losses = 0
+
+# GAME DICTIONARY
+'''This dictionary stores the option choices for display'''
+display_choice_dict = {"r": "Rock",
+                       "p": "Paper",
+                       "s": "Scissors"}
+
+# USER'S NAME
+name = ""
+name = welcome(name)
 
 # GAME FLOW
 if len(name) == 0: # validate name
