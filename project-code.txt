@@ -124,61 +124,68 @@ display_choice_dict = {"r": "Rock",
 
 # USER'S NAME
 name = ""
-name = welcome(name)
 
-# GAME FLOW
-if len(name) == 0: # validate name
-    print("Game ended due to invalid name input.")
+''' Game Flow with error handling '''
+try:
+    name = welcome(name)
+
+    # GAME FLOW
+    if len(name) == 0: # validate name
+        print("Game ended due to invalid name input.")
+        
+    else:
+        total_wins = 0
+        total_losses = 0
     
-else:
-    total_wins = 0
-    total_losses = 0
-
-    while True:
-
-        user_selection = get_user_selection()
-        
-        if user_selection == "e": #game exits if user selects 'e'
-            break
-
-        computer_selection = get_computer_selection()
-
-        result = determine_winner(user_selection, computer_selection)
-        result_message = result[1]
-        result = result[0]
-        
-        print(result_message)
-
-        total_games_played += 1
-
-        if result == "win":
-            total_wins += 1
-            print("\n1 Point has been added to your Wins!\n")
+        while True:
+    
+            user_selection = get_user_selection()
             
-        elif result == "loss":
-            total_losses += 1
-            print("\n1 Point has been added to your Losses...\n")
+            if user_selection == "e": #game exits if user selects 'e'
+                break
+    
+            computer_selection = get_computer_selection()
+    
+            result = determine_winner(user_selection, computer_selection)
+            result_message = result[1]
+            result = result[0]
             
-        else:
-            print("\nNo Points have been added\n")
-
-        print("------ CURRENT SCORE SUMMARY ------")
+            print(result_message)
+    
+            total_games_played += 1
+    
+            if result == "win":
+                total_wins += 1
+                print("\n1 Point has been added to your Wins!\n")
+                
+            elif result == "loss":
+                total_losses += 1
+                print("\n1 Point has been added to your Losses...\n")
+                
+            else:
+                print("\nNo Points have been added\n")
+    
+            print("------ CURRENT SCORE SUMMARY ------")
+            print("Wins:", total_wins)
+            print("Losses:", total_losses)
+            print("Total Games Played:", total_games_played)
+            print()
+    
+            again = ask_play_again()
+    
+            if again == "y":
+                continue
+                
+            else:
+                break
+                
+        print("\nThank you for playing.")
+        print("------ FINAL SCORE SUMMARY ------")
         print("Wins:", total_wins)
         print("Losses:", total_losses)
         print("Total Games Played:", total_games_played)
-        print()
 
-        again = ask_play_again()
-
-        if again == "y":
-            continue
-            
-        else:
-            break
-            
-    print("\nThank you for playing.")
-    print("------ FINAL SCORE SUMMARY ------")
-    print("Wins:", total_wins)
-    print("Losses:", total_losses)
-    print("Total Games Played:", total_games_played)
+except Exception as e:
+    print("Caught exception:",e)
+finally:
     print("GAME ENDED")
